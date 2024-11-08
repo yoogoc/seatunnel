@@ -17,7 +17,7 @@ Read data from Apache Paimon.
 
 ## Options
 
-|          name           |  type  | required | default value |
+| name                    | type   | required | default value |
 |-------------------------|--------|----------|---------------|
 | warehouse               | String | Yes      | -             |
 | catalog_type            | String | No       | filesystem    |
@@ -28,6 +28,7 @@ Read data from Apache Paimon.
 | query                   | String | No       | -             |
 | paimon.hadoop.conf      | Map    | No       | -             |
 | paimon.hadoop.conf-path | String | No       | -             |
+| paimon.fs.conf          | Map    | No       | -             |
 
 ### warehouse [string]
 
@@ -81,6 +82,10 @@ Properties in hadoop conf
 ### paimon.hadoop.conf-path [string]
 
 The specified loading path for the 'core-site.xml', 'hdfs-site.xml', 'hive-site.xml' files
+
+### paimon.fs.conf [string]
+
+Properties when the catalog type is filesystem
 
 ## Examples
 

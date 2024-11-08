@@ -31,7 +31,7 @@ libfb303-xxx.jar
 
 ## Options
 
-|            name             | type   | required | default value                | Description                                                                                                                                                      |
+| name                        | type   | required | default value                | Description                                                                                                                                                      |
 |-----------------------------|--------|----------|------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | warehouse                   | String | Yes      | -                            | Paimon warehouse path                                                                                                                                            |
 | catalog_type                | String | No       | filesystem                   | Catalog type of Paimon, support filesystem and hive                                                                                                              |
@@ -46,6 +46,7 @@ libfb303-xxx.jar
 | paimon.table.write-props    | Map    | No       | -                            | Properties passed through to paimon table initialization, [reference](https://paimon.apache.org/docs/master/maintenance/configurations/#coreoptions).            |
 | paimon.hadoop.conf          | Map    | No       | -                            | Properties in hadoop conf                                                                                                                                        |
 | paimon.hadoop.conf-path     | String | No       | -                            | The specified loading path for the 'core-site.xml', 'hdfs-site.xml', 'hive-site.xml' files                                                                       |
+| paimon.fs.conf              | Map    | No       | -                            | Properties when the catalog type is filesystem                                                                                                                   |
 
 ## Changelog
 You must configure the `changelog-producer=input` option to enable the changelog producer mode of the paimon table. If you use the auto-create table function of paimon sink, you can configure this property in `paimon.table.write-props`.

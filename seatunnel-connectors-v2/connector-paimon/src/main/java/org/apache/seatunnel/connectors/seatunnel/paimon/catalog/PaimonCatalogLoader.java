@@ -55,11 +55,14 @@ public class PaimonCatalogLoader implements Serializable {
 
     private PaimonHadoopConfiguration paimonHadoopConfiguration;
 
+    private Map<String, String> paimonFilesystemConfiguration;
+
     public PaimonCatalogLoader(PaimonConfig paimonConfig) {
         this.warehouse = paimonConfig.getWarehouse();
         this.catalogType = paimonConfig.getCatalogType();
         this.catalogUri = paimonConfig.getCatalogUri();
         this.paimonHadoopConfiguration = PaimonSecurityContext.loadHadoopConfig(paimonConfig);
+        this.paimonFilesystemConfiguration = paimonConfig.getFsConfProps();
     }
 
     public Catalog loadCatalog() {
@@ -77,6 +80,8 @@ public class PaimonCatalogLoader implements Serializable {
             paimonHadoopConfiguration
                     .getPropsWithPrefix(StringUtils.EMPTY)
                     .forEach((k, v) -> optionsMap.put(k, v));
+        } else if (PaimonCatalogEnum.FILESYSTEM.getType().equals(catalogType.getType())) {
+            optionsMap.putAll(paimonFilesystemConfiguration);
         }
         final Options options = Options.fromMap(optionsMap);
         PaimonSecurityContext.shouldEnableKerberos(paimonHadoopConfiguration);
