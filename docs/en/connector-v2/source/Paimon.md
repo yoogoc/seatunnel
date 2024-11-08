@@ -17,7 +17,7 @@ Read data from Apache Paimon.
 
 ## Options
 
-|          name           |  type  | required | default value |
+| name                    | type   | required | default value |
 |-------------------------|--------|----------|---------------|
 | warehouse               | String | Yes      | -             |
 | catalog_type            | String | No       | filesystem    |
@@ -28,6 +28,7 @@ Read data from Apache Paimon.
 | query                   | String | No       | -             |
 | paimon.hadoop.conf      | Map    | No       | -             |
 | paimon.hadoop.conf-path | String | No       | -             |
+| paimon.fs.conf          | Map    | No       | -             |
 
 ### warehouse [string]
 

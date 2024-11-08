@@ -106,6 +106,12 @@ public class PaimonConfig implements Serializable {
                     .withDescription(
                             "The specified loading path for the 'core-site.xml', 'hdfs-site.xml', 'hive-site.xml' files");
 
+    public static final Option<Map<String, String>> FS_CONF =
+            Options.key("paimon.fs.conf")
+                    .mapType()
+                    .defaultValue(new HashMap<>())
+                    .withDescription("Properties in conf when catalog type is 'filesystem'");
+
     protected String catalogName;
     protected PaimonCatalogEnum catalogType;
     protected String catalogUri;
@@ -114,6 +120,7 @@ public class PaimonConfig implements Serializable {
     protected String table;
     protected String hdfsSitePath;
     protected Map<String, String> hadoopConfProps;
+    protected Map<String, String> fsConfProps;
     protected String hadoopConfPath;
 
     public PaimonConfig(ReadonlyConfig readonlyConfig) {
@@ -125,6 +132,7 @@ public class PaimonConfig implements Serializable {
         this.hdfsSitePath = readonlyConfig.get(HDFS_SITE_PATH);
         this.hadoopConfProps = readonlyConfig.get(HADOOP_CONF);
         this.hadoopConfPath = readonlyConfig.get(HADOOP_CONF_PATH);
+        this.fsConfProps = readonlyConfig.get(FS_CONF);
         this.catalogType = readonlyConfig.get(CATALOG_TYPE);
         if (PaimonCatalogEnum.HIVE.getType().equals(catalogType.getType())) {
             this.catalogUri =
