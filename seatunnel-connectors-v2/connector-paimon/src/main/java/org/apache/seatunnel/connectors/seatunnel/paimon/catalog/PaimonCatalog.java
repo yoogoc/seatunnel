@@ -290,7 +290,9 @@ public class PaimonCatalog implements Catalog, PaimonTable {
             }
         } else if (cause instanceof RuntimeException) {
             String message = cause.getMessage();
-            if (message.contains("Cannot define 'bucket-key' in unaware or dynamic bucket mode.")) {
+            // TODO should use accurate assert
+            if (message.contains(
+                    "Cannot define 'bucket-key' with bucket -1, please specify a bucket number.")) {
                 throw new PaimonConnectorException(
                         PaimonConnectorErrorCode.WRITE_PROPS_BUCKET_KEY_ERROR, message);
             }
